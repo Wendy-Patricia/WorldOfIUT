@@ -1,5 +1,5 @@
 all: WorldOfIUT
-
+CC=gcc
 exits.o: exits.h
 cmd.o: cmd.h game.h exits.h mobile.h
 mobile.o: mobile.h exits.h
