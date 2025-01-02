@@ -1,6 +1,7 @@
 #ifndef MOBILE_H
 #define MOBILE_H
 
+
 typedef struct 
 {
     char *name;
