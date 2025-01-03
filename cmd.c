@@ -50,10 +50,14 @@ void cmdLook(Game *game, char *args)
     }
     Mobile *player=game->player;
     if (!strcasecmp(args,"me")) MobilePrint(player);
-    else if (!strcasecmp(args,"around"))
-				printf("You are nowhere! You (God) should create some locations...\n");
-		else
-				printf("You look %s. Well nothing there. You (God) should create some locations...\n",args); // default message
+    else if (!strcasecmp(args,"around")){
+        if (player->currentLocation){
+            LocationPrint(player->currentLocation);
+        } else{
+				printf("You are nowhere! You (God) should create some locations...\n");}
+    } else{
+				printf("You look %s. Well nothing there.\n",args); // default message
+    }         
 }
 
 /* react to command "go". The direction to move in is given by args */
@@ -64,10 +68,14 @@ void cmdGo(Game *game,char *args)
         printf("You must provide a direction to go to (cf 'Help')\n");
         return;
     }
-
+    Mobile *player=game->player; 
     Direction dir=strtodir(args);
-    if (dir == WRONGDIR) printf("You cannot go %s\n",args);
-    else printf("You try to go %s, but you cannot go %s from nowhere. You (God) should create some locations...\n",args, args);
+    if (dir == WRONGDIR) {printf("You cannot go %s\n",args);
+}else if (player->currentLocation && player->currentLocation->exits[dir]){
+      MobileMove(player, player->currentLocation->exits[dir]);
+      printf("You move %s.\n", args);
+}
+    else printf("You try to go %s, but you cannot go %s from nowhere.\n",args, args);
 }
 
 

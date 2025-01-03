@@ -12,7 +12,7 @@ Mobile *MobileNew(char *name, char *desc)
         ret = malloc(sizeof(Mobile));
         ret->name = strdup(name);
         ret->desc = strdup(desc);
-       // ret->currentLocation = NULL;
+        ret->currentLocation = NULL; 
     }
     return ret;
 }
@@ -34,4 +34,10 @@ void MobilePrint(Mobile *m)
 {
     if (m)
         printf("%s\n%s\n", m->name, m->desc);
+}
+
+void MobileMove(Mobile *m, Location *newLocation){
+    if(m && newLocation){
+        m->currentLocation = newLocation; 
+    }
 }

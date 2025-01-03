@@ -3,11 +3,11 @@
 #include "exits.h"
 
 
-typedef struct 
+typedef struct Location
 {
     char *name;
     char *desc;
-    Location*exits[6]; //for each direction(north, south, east, west, up and down)
+    struct Location*exits[6]; //for each direction(north, south, east, west, up and down)
 } Location;
 
 extern Location *LocationNew(char *name, char *desc);
