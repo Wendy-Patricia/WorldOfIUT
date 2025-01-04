@@ -132,7 +132,8 @@ Location *LocationInit()
    StackPush(stack, loc10);
    StackPush(stack, loc11);
    StackPush(stack, loc12);
-   return loc1; // Retorne the first location
+   
+   return stack; // Retorne the first location
 }
 
 /* Destroys all locations using the stack */

@@ -19,6 +19,7 @@ Game *GameInit()
         }
 
         // Initialize locations and link the player to the starting location
+        ret->locations = LocationInit();
         Location *startLocation = LocationInit();
         // If location initialization fails, cleans up the player and Game Structure
         if (!startLocation)
@@ -35,13 +36,17 @@ Game *GameInit()
 }
 
 /* correctly deallocate everythig that was dynamically allocated in GameInit */
-Game *GameShutdown(Game *g)
-{
-    if (g)
-    {
-        g->player = MobileDelete(g->player);
-        //Frees up all the locations
+void GameShutdown(Game *g) {
+    if (g) {
+        // Free the player
+        MobileDelete(g->player);
+
+        // Free all locations
+        LocationDestroy(g->locations);
+
+        // Free the game structure
         free(g);
+
+        printf("Game shuted down successfully.\n");
     }
-    return (Game *)NULL;
 }
