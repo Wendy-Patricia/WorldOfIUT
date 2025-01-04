@@ -1,4 +1,5 @@
 #include "location.h"
+#include "stack.h"
 #include <string.h> /* strdup */
 #include <stdio.h>  /* printf */
 #include <stdlib.h> /* malloc, free */
@@ -106,7 +107,7 @@ Location *LocationInit()
 
    LocationSetExit(loc8, NORTH, loc7);
    LocationSetExit(loc8, SOUTH, loc9);
-   
+
    LocationSetExit(loc9, NORTH, loc8);
    LocationSetExit(loc9, EAST, loc10);
 
@@ -116,30 +117,31 @@ Location *LocationInit()
    LocationSetExit(loc11, DOWN, loc5);
    LocationSetExit(loc12, UP, loc5);
 
+
+   // stacking up all the locations
+   Stack *stack = StackCreate();
+   StackPush(stack, loc1);
+   StackPush(stack, loc2);
+   StackPush(stack, loc3);
+   StackPush(stack, loc4);
+   StackPush(stack, loc5);
+   StackPush(stack, loc6);
+   StackPush(stack, loc7);
+   StackPush(stack, loc8);
+   StackPush(stack, loc9);
+   StackPush(stack, loc10);
+   StackPush(stack, loc11);
+   StackPush(stack, loc12);
    return loc1; // Retorne the first location
 }
 
-void LocationDestroy(Location *start)
+/* Destroys all locations using the stack */
+void LocationDestroy(Stack *stack)
 {
-   if (!start)
-      return;
-
-   Location *visited[100] = {NULL};
-   int count = 0;
-
-   visited[count++] = start;
-
-   for (int i = 0; i < count; i++)
+   while (!StackIsEmpty(stack))
    {
-      Location *current = visited[i];
-      for (int j = 0; j < 6; j++)
-      {
-         Location *next = current->exits[j];
-         if (next && next != start)
-         {
-            visited[count++] = next;
-         }
-      }
-      LocationDelete(current);
+      Location *loc = StackPop(stack); // Remove the top location
+      LocationDelete(loc);             // Free the location's memory
    }
+   StackDestroy(stack); // Free the stack
 }
