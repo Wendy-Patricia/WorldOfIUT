@@ -3,7 +3,7 @@
 
 #include "mobile.h"    // To manage the player
 #include "location.h"  // To manage locations
-#include "stack.h"     // To manage the stack of locations
+  // To manage the stack of locations
 
 typedef struct
 {
@@ -12,5 +12,5 @@ typedef struct
 } Game;
 
 extern Game *GameInit();
-extern void GameShutdown(Game *g);
+extern Game *GameShutdown(Game *g);
 #endif // GAME_H

@@ -1,43 +1,60 @@
 #include "game.h"
 #include "mobile.h"
+#include <stdio.h>
 #include <stdlib.h> /* malloc, free, NULL */
 
 /* Initialize everything that makes up the game: player and locations */
-Game *GameInit()
+Game *GameInit() 
 {
-    // allocate memory for the game structure
+    // Allocate memory for the game structure
     Game *ret = malloc(sizeof(Game));
-    if (ret)
+    if (!ret)
     {
-        // creates the player objet
-        ret->player = MobileNew("You", "A very dynamic and adventurous young person!");
-        // If player creation fails, free the Game strcutre
-        if (!ret->player)
-        {
-            free(ret);
-            return NULL;
-        }
-
-        // Initialize locations and link the player to the starting location
-        ret->locations = LocationInit();
-        Location *startLocation = LocationInit();
-        // If location initialization fails, cleans up the player and Game Structure
-        if (!startLocation)
-        {
-            MobileDelete(ret->player);
-            free(ret);
-            return NULL;
-        }
-
-        // To set the player's current loction to the starting location
-        ret->player->currentLocation = startLocation;
+        printf("Error: Could not allocate memory for the game structure.\n");
+        return NULL;
     }
+
+    // Create the player
+    ret->player = MobileNew("You", "A very dynamic and adventurous young person!");
+    if (!ret->player)
+    {
+        printf("Error: Could not create the player.\n");
+        free(ret); // Free the game structure
+        return NULL;
+    }
+
+    // Initialize locations and store in the game structure
+    ret->locations = LocationInit();
+    if (!ret->locations)
+    {
+        printf("Error: Could not initialize locations.\n");
+        MobileDelete(ret->player); // Free the player
+        free(ret);                 // Free the game structure
+        return NULL;
+    }
+
+    // Set the player's starting location
+   ret->player->currentLocation = StackHead(ret->locations);  // Directly assign Location* to the player's current location
+    if (!ret->player->currentLocation)
+    {
+        printf("Error: Could not set the player's starting location.\n");
+        LocationDestroy(ret->locations); // Free locations
+        MobileDelete(ret->player);       // Free the player
+        free(ret);                       // Free the game structure
+        return NULL;
+    }
+
+    printf("Game initialized successfully! Starting location: %s\n",
+           ret->player->currentLocation->name);
     return ret;
 }
 
+
 /* correctly deallocate everythig that was dynamically allocated in GameInit */
-void GameShutdown(Game *g) {
-    if (g) {
+Game *GameShutdown(Game *g)
+{
+    if (g)
+    {
         // Free the player
         MobileDelete(g->player);
 
@@ -48,5 +65,7 @@ void GameShutdown(Game *g) {
         free(g);
 
         printf("Game shuted down successfully.\n");
+
+        return (Game *)NULL;
     }
 }
