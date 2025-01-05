@@ -15,7 +15,7 @@ Game *GameInit()
     }
 
     // Create the player
-    ret->player = MobileNew("You", "A very dynamic and adventurous young person!");
+    ret->player = MobileNew("You", "A young fighter looking for adventures and magic realms!");
     if (!ret->player)
     {
         printf("Error: Could not create the player.\n");
@@ -27,7 +27,6 @@ Game *GameInit()
     ret->locations = LocationInit();
     if (!ret->locations)
     {
-        printf("Error: Could not initialize locations.\n");
         MobileDelete(ret->player); // Free the player
         free(ret);                 // Free the game structure
         return NULL;
@@ -37,15 +36,13 @@ Game *GameInit()
    ret->player->currentLocation = StackHead(ret->locations);  // Directly assign Location* to the player's current location
     if (!ret->player->currentLocation)
     {
-        printf("Error: Could not set the player's starting location.\n");
         LocationDestroy(ret->locations); // Free locations
         MobileDelete(ret->player);       // Free the player
         free(ret);                       // Free the game structure
         return NULL;
     }
 
-    printf("Game initialized successfully! Starting location: %s\n",
-           ret->player->currentLocation->name);
+    
     return ret;
 }
 

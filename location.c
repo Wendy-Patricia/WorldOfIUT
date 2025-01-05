@@ -19,8 +19,6 @@ extern Location *LocationNew(char *name, char *desc)
             loc->exits[i] = NULL; // everthing  is inicializated with null with no incial location
          }
       }
-   
-   
    }
    return loc;
 }
@@ -43,15 +41,6 @@ void LocationPrint(Location *loc)
    {
       printf("Location: %s\n", loc->name);
       printf("Description: %s\n", loc->desc);
-      printf("Exits:\n");
-      const char *directions[] = {"NORTH", "EAST", "SOUTH", "WEST", "UP", "DOWN"};
-      for (int i = 0; i < 6; i++)
-      {
-         if (loc->exits[i])
-         {
-            printf("- %s: %s\n", directions[i], loc->exits[i]->name);
-         }
-      }
    }
 }
 
@@ -65,58 +54,70 @@ void LocationSetExit(Location *from, Direction dir, Location *to)
 }
 
 /* Creates a new stack */
-Stack *StackCreate() {
-    Stack *stack = malloc(sizeof(Stack));
-    if (stack) {
-        stack->top = NULL; // Initialize the stack as empty
-    }
-    return stack;
+Stack *StackCreate()
+{
+   Stack *stack = malloc(sizeof(Stack));
+   if (stack)
+   {
+      stack->top = NULL; // Initialize the stack as empty
+   }
+   return stack;
 }
 
 /* Checks if the stack is empty */
-int StackIsEmpty(Stack *stack) {
-    return stack->top == NULL;
+int StackIsEmpty(Stack *stack)
+{
+   return stack->top == NULL;
 }
 
 /* Pushes a Location onto the stack */
-void StackPush(Stack *stack, Location *location) {
-    if (!stack || !location) return;
+void StackPush(Stack *stack, Location *location)
+{
+   if (!stack || !location)
+      return;
 
-    // Create a new stack node
-    StackNode *node = malloc(sizeof(StackNode));
-    if (node) {
-        node->location = location;   // Assign the Location to the node
-        node->next = stack->top;    // Point the new node to the current top
-        stack->top = node;          // Update the stack's top pointer
-    }
+   // Create a new stack node
+   StackNode *node = malloc(sizeof(StackNode));
+   if (node)
+   {
+      node->location = location; // Assign the Location to the node
+      node->next = stack->top;   // Point the new node to the current top
+      stack->top = node;         // Update the stack's top pointer
+   }
 }
 
 /* Returns the top Location without removing it */
-Location *StackHead(Stack *stack) {
-    if (!StackIsEmpty(stack)) {
-        return stack->top->location; // Return the Location at the top
-    }
-    return NULL;
+Location *StackHead(Stack *stack)
+{
+   if (!StackIsEmpty(stack))
+   {
+      return stack->top->location; // Return the Location at the top
+   }
+   return NULL;
 }
 
 /* Pops the top Location off the stack */
-Location *StackPop(Stack *stack) {
-    if (StackIsEmpty(stack)) return NULL;
+Location *StackPop(Stack *stack)
+{
+   if (StackIsEmpty(stack))
+      return NULL;
 
-    StackNode *node = stack->top;       // Get the top node
-    Location *location = node->location; // Extract the Location
-    stack->top = node->next;            // Move the top pointer down
-    free(node);                         // Free the node
+   StackNode *node = stack->top;        // Get the top node
+   Location *location = node->location; // Extract the Location
+   stack->top = node->next;             // Move the top pointer down
+   free(node);                          // Free the node
 
-    return location;
+   return location;
 }
 
 /* Destroys the stack and frees all memory */
-void StackDestroy(Stack *stack) {
-    while (!StackIsEmpty(stack)) {
-        StackPop(stack); // Remove and free each node
-    }
-    free(stack); // Free the stack structure
+void StackDestroy(Stack *stack)
+{
+   while (!StackIsEmpty(stack))
+   {
+      StackPop(stack); // Remove and free each node
+   }
+   free(stack); // Free the stack structure
 }
 
 /* creation of the locations" */
@@ -173,21 +174,20 @@ Stack *LocationInit()
    LocationSetExit(loc11, DOWN, loc5);
    LocationSetExit(loc12, UP, loc5);
 
-
    // stacking up all the locations
    Stack *stack = StackCreate();
-   StackPush(stack, loc1);
-   StackPush(stack, loc2);
-   StackPush(stack, loc3);
-   StackPush(stack, loc4);
-   StackPush(stack, loc5);
-   StackPush(stack, loc6);
-   StackPush(stack, loc7);
-   StackPush(stack, loc8);
-   StackPush(stack, loc9);
-   StackPush(stack, loc10);
-   StackPush(stack, loc11);
    StackPush(stack, loc12);
+   StackPush(stack, loc11);
+   StackPush(stack, loc10);
+   StackPush(stack, loc9);
+   StackPush(stack, loc8);
+   StackPush(stack, loc7);
+   StackPush(stack, loc6);
+   StackPush(stack, loc5);
+   StackPush(stack, loc4);
+   StackPush(stack, loc3);
+   StackPush(stack, loc2);
+   StackPush(stack, loc1);
 
    return stack; // Retorne the first location
 }
