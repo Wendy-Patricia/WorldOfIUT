@@ -4,10 +4,15 @@
 #include <stdio.h>  /* printf */
 #include <stdlib.h> /* malloc, free */
 
+// Creates a new Location with a name and description
+// @param name: the name of the location
+// @param desc: the description of the location
+// @return a pointer to the newly created Location
+// @note all exits are initialized to NULL
 extern Location *LocationNew(char *name, char *desc)
 {
    Location *loc = (Location *)NULL;
-   if (name && desc) /** && where)**/
+   if (name && desc)
    {
       loc = malloc(sizeof(Location));
       if (loc)
@@ -23,6 +28,9 @@ extern Location *LocationNew(char *name, char *desc)
    return loc;
 }
 
+// Frees all memory associated with a Location
+// @param l: the location to be deleted
+// @note safely frees name, description, and the location itself
 extern void LocationDelete(Location *l)
 {
    if (l)
@@ -35,7 +43,10 @@ extern void LocationDelete(Location *l)
    }
 }
 
-void LocationPrint(Location *loc)
+// Prints the name and description of a Location
+// @param loc: the location to be printed
+// @note does nothing if loc is NULL
+void LocationPrint(Location *loc) 
 {
    if (loc)
    {
@@ -44,7 +55,11 @@ void LocationPrint(Location *loc)
    }
 }
 
-/* Define connexion between 2 locations*/
+// Sets an exit from one Location to another
+// @param from: the starting location
+// @param dir: the direction of the exit
+// @param to: the destination location
+// @note does nothing if from is NULL or dir is invalid
 void LocationSetExit(Location *from, Direction dir, Location *to)
 {
    if (from && dir >= 0 && dir < 6)
@@ -53,7 +68,9 @@ void LocationSetExit(Location *from, Direction dir, Location *to)
    }
 }
 
-/* creation of the locations" */
+// Initializes all locations and establishes connections between them
+// @return a stack containing all locations
+// @note each location is pushed onto the stack in reverse order of creation
 Stack *LocationInit()
 {
    Location *loc1 = LocationNew("On the road", "You are in a open field with only beautiful flowers around you.");
@@ -122,10 +139,12 @@ Stack *LocationInit()
    StackPush(stack, loc2);
    StackPush(stack, loc1);
 
-   return stack; // Retorne the first location
+   return stack; // Retorne the stack
 }
 
-/* Destroys all locations using the stack */
+// Frees all locations using a stack
+// @param stack: the stack of locations to be freed
+// @note frees both the locations and the stack itself
 void LocationDestroy(Stack *stack)
 {
    while (!StackIsEmpty(stack))
