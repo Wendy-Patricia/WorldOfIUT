@@ -3,6 +3,7 @@
         "*.embeddedhtml": "html",
         "stdlib.h": "c",
         "mobile.h": "c",
-        "location.h": "c"
+        "location.h": "c",
+        "stack.h": "c"
     }
 }

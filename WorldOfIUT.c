@@ -12,7 +12,7 @@ void Intro()
 }
 
 
-int main(int argc, char *argv[])
+int main()
 {
     Intro();
     Game *g=GameInit();
