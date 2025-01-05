@@ -1,7 +1,7 @@
 #include "game.h"
 #include "mobile.h"
 #include <stdio.h>
-#include <stdlib.h> /* malloc, free, NULL */
+#include <stdlib.h> 
 
 /* Initialize everything that makes up the game: player and locations */
 Game *GameInit() 
@@ -18,7 +18,6 @@ Game *GameInit()
     ret->player = MobileNew("You", "A young fighter looking for adventures and magic realms!");
     if (!ret->player)
     {
-        printf("Error: Could not create the player.\n");
         free(ret); // Free the game structure
         return NULL;
     }
@@ -61,7 +60,7 @@ Game *GameShutdown(Game *g)
         // Free the game structure
         free(g);
 
-        printf("Game shuted down successfully.\n");
+        printf("Thanks for playing this exciting adventure with us.\n");
 
         return (Game *)NULL;
     }

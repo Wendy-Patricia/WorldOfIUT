@@ -46,7 +46,7 @@ extern void LocationDelete(Location *l)
 // Prints the name and description of a Location
 // @param loc: the location to be printed
 // @note does nothing if loc is NULL
-void LocationPrint(Location *loc) 
+void LocationPrint(Location *loc)
 {
    if (loc)
    {
@@ -73,18 +73,53 @@ void LocationSetExit(Location *from, Direction dir, Location *to)
 // @note each location is pushed onto the stack in reverse order of creation
 Stack *LocationInit()
 {
-   Location *loc1 = LocationNew("On the road", "You are in a open field with only beautiful flowers around you.");
-   Location *loc2 = LocationNew("On the road", "You are in a open field with only beautiful flowers around you.");
-   Location *loc3 = LocationNew("On the road", "You are in a open field with only beautiful flowers around you.");
-   Location *loc4 = LocationNew("FrontYard", "A long hallway with doors on both sides.");
-   Location *loc5 = LocationNew("Entrance", "The gateway to a mystical world, where ancient runes glow softly on the stone archway.");
-   Location *loc6 = LocationNew("Dining Room", "A grand hall with a shimmering crystal chandelier and an enchanted feast eternally laid out on the table.");
-   Location *loc7 = LocationNew("Kitchen", "A magical kitchen filled with bubbling cauldrons and floating utensils crafting meals on their own.");
-   Location *loc8 = LocationNew("Laundry Room", "A whimsical chamber where clothes are cleaned by tiny, playful sprites.");
-   Location *loc9 = LocationNew("Office", "A quiet study lined with ancient tomes and a desk covered in mysterious scrolls.");
-   Location *loc10 = LocationNew("Living Room", "A cozy living area with a roaring magical fire and chairs that adjust themselves for comfort.");
-   Location *loc11 = LocationNew("Attic", "A dusty attic brimming with forgotten treasures and enchanted relics.");
-   Location *loc12 = LocationNew("Cellar", "A dark and cold cellar, with glowing jars containing captured starlight.");
+   Location *loc1 = LocationNew("On the road",
+                                "You find yourself on a mystical path, surrounded by ethereal flowers that shimmer faintly under the moonlight. "
+                                "The gentle rustling of leaves whispers secrets of distant lands, urging you to journey onward.");
+
+   Location *loc2 = LocationNew("On the road",
+                                "The road stretches endlessly ahead, flanked by ancient trees whose roots seem to pulse with an otherworldly glow. "
+                                "Soft, haunting melodies drift through the air, as though sung by unseen travelers of old.");
+
+   Location *loc3 = LocationNew("On the road",
+                                "This stretch of the road feels eerily calm. The flowers here are vibrant, their colors shifting like a living rainbow. "
+                                "A faint golden mist swirls at your feet, as if guiding your steps.");
+
+   Location *loc4 = LocationNew("FrontYard",
+                                "You stand in a grand courtyard with stone paths that intertwine like a maze. Enchanted lanterns float mid-air, "
+                                "casting soft, warm light over a garden brimming with magical herbs and singing roses.");
+
+   Location *loc5 = LocationNew("Entrance",
+                                "An imposing archway, carved from ancient stone, marks the gateway to a forgotten realm. Glowing runes pulsate rhythmically, "
+                                "their light bathing you in an aura of mystery and power. A faint hum fills the air, vibrating through your very being.");
+
+   Location *loc6 = LocationNew("Dining Room",
+                                "A majestic dining hall where the chandeliers sparkle like captured starlight. The table is laden with an eternal feast, "
+                                "each dish more enticing than the last, and the aromas are almost too intoxicating to resist.");
+
+   Location *loc7 = LocationNew("Kitchen",
+                                "The air buzzes with magical energy in this enchanted kitchen. Cauldrons bubble with unknown brews, and utensils float "
+                                "gracefully through the air. The walls are lined with shelves holding spellbound spices and ancient recipes.");
+
+   Location *loc8 = LocationNew("Laundry Room",
+                                "A delightful chaos reigns in this whimsical chamber, where tiny sprites dart about, cleaning garments with magical efficiency. "
+                                "Soap bubbles float lazily through the room, glowing faintly and humming soft, harmonious tunes.");
+
+   Location *loc9 = LocationNew("Office",
+                                "A serene study filled with ancient knowledge. Towering bookshelves hold tomes bound in leather and gold, "
+                                "while a grand desk, strewn with parchment and glowing quills, invites you to unravel secrets long forgotten.");
+
+   Location *loc10 = LocationNew("Living Room",
+                                 "This cozy living space is alive with magic. A roaring fire flickers in the hearth, its flames dancing to an unheard melody. "
+                                 "Chairs and sofas adjust themselves as if welcoming you, and the room feels imbued with a comforting presence.");
+
+   Location *loc11 = LocationNew("Attic",
+                                 "The attic is a treasure trove of forgotten wonders. Dust motes float lazily in the golden light streaming through a small window, "
+                                 "revealing relics of adventures past: chests, maps, and enchanted artifacts lie scattered, waiting to be rediscovered.");
+
+   Location *loc12 = LocationNew("Cellar",
+                                 "The cellar exudes an aura of mystery. Its damp stone walls are lined with shelves holding jars of captured starlight, "
+                                 "casting faint, shimmering patterns across the floor. The air is thick with the scent of age and forgotten magic.");
 
    // Connection
    LocationSetExit(loc1, NORTH, loc2);

@@ -23,7 +23,8 @@ void cmdHelp()
         "                'look <dir>' to look in the given direction (e.g. 'look east' to\n"
         "                look east from the current room). Allowed directions are north, east,\n"
         "                south, west, up, and down.\n"
-        "- go <dir>:     to go in the given direction.\n");
+        "- go <dir>:     to go in the given direction.\n"
+        );
 }
 
 /* react to command "quit": properly shuts the game down using GameShutdown and exit */
