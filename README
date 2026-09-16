@@ -1,0 +1,104 @@
+# World of IUT
+
+World of IUT is a C-based exploration game developed as part of the BUT Informatique program at IUT Saint-Dié-des-Vosges.
+
+The project focuses on managing game locations, player movement and dynamic memory using appropriate data structures.
+
+## Project Overview
+
+The game represents a set of interconnected locations that the player can explore.
+
+Each location contains information about its environment and the possible directions available to reach other locations.
+
+The project also uses a Stack structure to manage locations and ensure an ordered release of dynamically allocated memory.
+
+## Features
+
+- Navigation between different game locations
+- Representation of interconnected locations
+- Display of location information
+- Dynamic creation and deletion of locations
+- Stack-based memory management
+- Player movement between locations
+- Initialization and shutdown of game resources
+
+## Data Structures
+
+### Location
+
+The `Location` module represents the different places available in the game.
+
+Main functions:
+
+- `LocationNew` - Creates a new location in memory
+- `LocationDelete` - Releases the memory allocated to a location
+- `LocationPrint` - Displays information about a location
+- `LocationInit` - Initializes the locations and their connections
+
+### Stack
+
+The `Stack` module provides a LIFO (Last In, First Out) structure used to manage locations during their destruction.
+
+Main functions:
+
+- `StackPush` - Adds a location to the stack
+- `StackPop` - Removes the location at the top of the stack
+- `StackHead` - Accesses the location at the top of the stack
+
+## Player Movement
+
+The player's position is associated with a `Location` through a pointer.
+
+The `MobileMove` function allows the player to move dynamically between connected locations.
+
+The game initialization and shutdown functions were also adapted to correctly initialize locations and release allocated resources.
+
+## My Contribution
+
+As part of the development team, my main contributions were:
+
+- Implementation of the `Location` module
+- Development of `LocationNew`, `LocationDelete` and `LocationPrint`
+- Implementation of `LocationInit`
+- Creation of connections between locations
+- Implementation of the `Stack` data structure
+- Development of the associated stack functions
+
+## Technologies
+
+- C
+- Data Structures
+- Dynamic Memory Management
+- Pointers
+- Modular Programming
+
+## Project Context
+
+This project was developed as part of the **SAE 1.01 - Implémentation d’un besoin client** at:
+
+**IUT de Saint-Dié-des-Vosges - BUT Informatique**
+
+### Authors
+
+- Wendy Mechisso
+- Eunice Ligeiro
+
+## Limitations
+
+The project has some limitations:
+
+- Increasing the number of locations and connections may increase the complexity of optimization.
+- Some edge cases may not be fully covered by the implemented tests.
+
+## Future Improvements
+
+Possible improvements include:
+
+- Increasing test coverage
+- Improving scalability when the number of locations increases
+- Optimizing the management of connections between locations
+- Adding additional game features
+
+## License
+
+This project is licensed under the MIT License. See the `LICENSE` file for more information.
