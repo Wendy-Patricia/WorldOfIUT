@@ -51,17 +51,13 @@ Game *GameShutdown(Game *g)
 {
     if (g)
     {
-        // Free the player
         MobileDelete(g->player);
-
-        // Free all locations
         LocationDestroy(g->locations);
-
-        // Free the game structure
         free(g);
 
         printf("Thanks for playing this exciting adventure with us.\n");
-
-        return (Game *)NULL;
+        return NULL;
     }
+
+    return NULL;
 }

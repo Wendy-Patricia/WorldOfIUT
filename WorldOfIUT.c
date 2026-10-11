@@ -1,6 +1,6 @@
 #include <stdio.h> /* for printf in Intro() */
 #include "game.h" /* for Game structure and GameInit() */
-#include "cmd.h" /* for processCommand() */
+#include "ui.h" /* for ncurses interface */
 
 void Intro()
 {
@@ -11,11 +11,17 @@ void Intro()
            "Farewell, and may the spirit of the Vosges be with you!\n");
 }
 
-
 int main()
 {
     Intro();
-    Game *g=GameInit();
-    while(1) processCommand(g);
+    Game *g = GameInit();
+    if (!g)
+    {
+        fprintf(stderr, "Failed to initialize the game.\n");
+        return 1;
+    }
+
+    UiRunGame(g);
+    GameShutdown(g);
     return 0;
 }

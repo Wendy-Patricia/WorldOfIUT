@@ -1,6 +1,6 @@
 # World of IUT
 
-World of IUT is a C-based exploration game developed as part of the BUT Informatique program at IUT Saint-Dié-des-Vosges.
+World of IUT is a C-based exploration game developed as part of my first year in BUT Informatique program at IUT Saint-Dié-des-Vosges.
 
 The project focuses on managing game locations, player movement and dynamic memory using appropriate data structures.
 
@@ -21,6 +21,55 @@ The project also uses a Stack structure to manage locations and ensure an ordere
 - Stack-based memory management
 - Player movement between locations
 - Initialization and shutdown of game resources
+
+## How to Run This Project
+
+This project is written in C and can be compiled with GCC (or MinGW on Windows) using the provided Makefile.
+
+### Requirements
+
+- A C compiler such as `gcc`
+- `make` installed on your system
+- Optional: MinGW on Windows if using a Windows terminal environment
+
+### Build and Run
+
+1. Open a terminal in the project folder.
+2. Compile the project:
+
+   ```bash
+   make
+   ```
+
+3. Run the game:
+
+   - Linux/macOS:
+
+     ```bash
+     ./WorldOfIUT
+     ```
+
+   - Windows:
+
+     ```bash
+     WorldOfIUT.exe
+     ```
+
+4. To remove the generated object files and executable:
+
+   ```bash
+   make clean
+   ```
+
+### Manual Compilation (if `make` is unavailable)
+
+You can also compile it directly with GCC:
+
+```bash
+gcc -Wall -Wextra -o WorldOfIUT WorldOfIUT.c cmd.c mobile.c game.c exits.c location.c stack.c
+```
+
+Then run the executable as shown above.
 
 ## Data Structures
 

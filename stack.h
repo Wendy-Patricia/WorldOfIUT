@@ -19,6 +19,7 @@ typedef struct
 Stack *StackCreate();
 int StackIsEmpty(Stack *stack);
 void StackPush(Stack *stack, struct Location *location); // Use forward-declared Location
+void StackDestroy(Stack *stack);
 struct Location *StackPop(Stack *stack);
 struct Location *StackHead(Stack *stack);
 
